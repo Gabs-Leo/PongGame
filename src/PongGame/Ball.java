@@ -47,17 +47,19 @@ public class Ball {
 		Rectangle boundsPlayer = new Rectangle(Game.player.x, Game.player.y, Game.player.width, Game.player.height);
 		Rectangle boundsEnemy = new Rectangle((int)Game.enemy.x, (int)Game.enemy.y, Game.enemy.width, Game.enemy.height);
 		if(bounds.intersects(boundsPlayer)) {
-			int angle = new Random().nextInt(120-45)+45;
+			int angle = new Random().nextInt(120-45);
 			dx = Math.cos(Math.toRadians(angle));
 			dy = Math.cos(Math.toRadians(angle));
+			speed+=.1;
 			if(dy > 0) {
 				dy*=-1;
 			}
 		}
 		else if(bounds.intersects(boundsEnemy)) {
-			int angle = new Random().nextInt(120-45)+45;
+			int angle = new Random().nextInt(120-45);
 			dx = Math.cos(Math.toRadians(angle));
 			dy = Math.cos(Math.toRadians(angle));
+			speed+=.1;
 			if(dy < 0) {
 				dy*=-1;
 			}
