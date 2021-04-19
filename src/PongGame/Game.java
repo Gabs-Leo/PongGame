@@ -15,7 +15,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public static int WIDTH = 240;
 	public static int HEIGHT = 240;
 	public static int SCALE = 4;
-	public Player player;
+	public static Player player;
+	public static Enemy enemy;
+	public static Ball ball;
 	public BufferedImage layer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
 	//Constructor//
@@ -23,6 +25,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
 		this.addKeyListener(this);
 		player = new Player(100, HEIGHT-30);
+		enemy = new Enemy(100, 50);
+		ball = new Ball(100,HEIGHT/2 - 1);
 	}
 	
 	//Main Method//
@@ -42,6 +46,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	//Event Tick and Render//
 	public void eventTick() {
 		player.eventTick();
+		enemy.eventTick();
+		ball.eventTick();
 	}
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
@@ -53,6 +59,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		player.render(g);
+		enemy.render(g);
+		ball.render(g);
 		
 		g = bs.getDrawGraphics();
 		g.drawImage(layer, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);

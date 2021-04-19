@@ -7,6 +7,7 @@ public class Player {
 	public boolean right, left;
 	public int x,y;
 	public int width, height;
+	public int speed = 3;
 	
 	public Player(int x, int y) {
 		this.x = x;
@@ -18,10 +19,10 @@ public class Player {
 	//Event Tick and Render//
 	public void eventTick(){
 		if(right){
-			x++;
+			x+=speed;
 		}
 		else if(left) {
-			x--;
+			x-=speed;
 		}
 		if(x+width > Game.WIDTH) {
 			x = Game.WIDTH - width;
